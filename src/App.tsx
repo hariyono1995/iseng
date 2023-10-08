@@ -1,16 +1,12 @@
 import {
-  CarTwoTone,
   FacebookOutlined,
-  HomeOutlined,
   InstagramOutlined,
   LineOutlined,
   LoginOutlined,
   LogoutOutlined,
   MailOutlined,
   PhoneOutlined,
-  SearchOutlined,
   TwitterOutlined,
-  UserOutlined,
   YoutubeOutlined,
 } from "@ant-design/icons";
 import Icon from "@ant-design/icons/lib/components/Icon";
@@ -32,9 +28,6 @@ import {
   Card,
   Input,
   Tag,
-  Radio,
-  Select,
-  Skeleton,
   Pagination,
   Tooltip,
   Form,
@@ -44,7 +37,6 @@ import {
   Rate,
   Spin,
   Modal,
-  Checkbox,
   Alert,
 } from "antd";
 import { Content, Footer, Header } from "antd/es/layout/layout";
@@ -96,8 +88,7 @@ function App() {
   const [formDetail] = Form.useForm();
 
   const [data, setData] = useState<ResponseProduct>();
-  const [categories, setCategories] = useState<string[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  // const [categories, setCategories] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [productId, setProductId] = useState<number | null>(null);
   const [detail, setDetail] = useState<Product | null>(null);
@@ -125,10 +116,10 @@ function App() {
       })
       .catch((e) => console.log("ERROR FETCH PRODUCTS", e));
 
-    baseUrl
-      .get("/products/categories")
-      .then((res) => setCategories(res.data))
-      .catch((e) => console.log("ERROR FETCH PRODUCTS", e));
+    // baseUrl
+    //   .get("/products/categories")
+    //   .then((res) => setCategories(res.data))
+    //   .catch((e) => console.log("ERROR FETCH PRODUCTS", e));
   }, []);
 
   useEffect(() => {
@@ -169,7 +160,7 @@ function App() {
       baseUrl
         .get(`products/${productId}`)
         .then((res) => setDetail(res.data))
-        .catch((e) => console.log("ERROR FETCH DETAIL PRODUCT"));
+        .catch((e) => console.log("ERROR FETCH DETAIL PRODUCT", e));
     }
     return () => {
       setDetail(null);
